@@ -2,13 +2,16 @@
 
 namespace App\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController
 {
-    public function index():Response
+    #[Route("/", name: "home")]
+    public function index(Request $request):Response
     {
-        return new Response('Bonjour les gens');
+        return new Response('Bonjour '.$request->query->get('name','anonyme'));
 
     }
 }
